@@ -92,13 +92,13 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-assets:
+  assets:
   - assets/images/
   - assets/icons/
   - assets/lang/
 
 
-fonts:
+  fonts:
   - family: ProductSans
     fonts:
     - asset: assets/fonts/Product-Sans-Regular.ttf

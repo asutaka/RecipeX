@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
@@ -14,7 +16,7 @@ class SembastClient {
   Database get database => _database;
 
   static Future<SembastClient> provideDatabase({
-    String encryptionKey = 'Tomorrow',
+    String encryptionKey = '',
     required String databaseName,
     required String databasePath,
   }) async {
@@ -33,6 +35,7 @@ class SembastClient {
         var factory = databaseFactoryWeb;
         database = await factory.openDatabase(databaseName, codec: codec);
       } else {
+        log(dbPath);
         database = await databaseFactoryIo.openDatabase(dbPath, codec: codec);
       }
     } else {
