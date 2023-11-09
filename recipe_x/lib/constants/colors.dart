@@ -15,4 +15,7 @@ class AppColors {
     800: const Color(0xFFDB7424),
     900: const Color(0xFFD56217)
   };
+
+  static const primaryColor = Color(0xff53B175);
+  static const darkGrey = Color(0xff7C7C7C);
 }
