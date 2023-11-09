@@ -8,7 +8,7 @@ import '../utils/routes/routes.dart';
 import 'home/home.dart';
 import 'login/login.dart';
 import 'login/store/login_store.dart';
-import 'splash_screen.dart';
+import 'welcome_screen.dart';
 
 class MyApp extends StatelessWidget {
   final UserStore _userStore = getIt<UserStore>();
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             // A class which loads the translations from JSON files
             AppLocalizations.delegate,
           ],
-          home: SplashScreen(),
+          home: WelcomeScreen(),
           // home: _userStore.isLoggedIn ? HomeScreen() : LoginScreen(),
         );
       },

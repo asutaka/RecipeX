@@ -4,7 +4,7 @@ import '../account/account_screen.dart';
 import '../cart/cart_screen.dart';
 import '../explore/explore_screen.dart';
 import '../favourite/favourite_screen.dart';
-import '../home/home.dart';
+import '../home/home_screen.dart';
 
 class NavigatorItem {
   final String label;
