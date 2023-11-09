@@ -15,22 +15,28 @@ class SearchBarWidget extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SvgPicture.asset(
-            searchIcon,
+        children: <Widget>[
+          Flexible(
+            child: TextField(
+              decoration: const InputDecoration(
+                  hintText: "tìm kiếm", border: InputBorder.none),
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF7C7C7C)),
+            ),
           ),
-          SizedBox(
-            width: 8,
-          ),
-          Text(
-            "Search Store",
-            style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF7C7C7C)),
-          )
+          IconButton(
+              onPressed: onTap,
+              icon: SvgPicture.asset(
+                searchIcon,
+              ))
         ],
       ),
     );
+  }
+
+  void onTap() {
+    print("search called.");
   }
 }

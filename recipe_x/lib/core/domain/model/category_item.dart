@@ -8,27 +8,19 @@ class CategoryItem {
 
 var categoryItemsDemo = [
   CategoryItem(
-    name: "Fresh Fruits & Vegetables",
+    name: "Rau quả",
     imagePath: "assets/images/categories_images/fruit.png",
   ),
   CategoryItem(
-    name: "Cooking Oil",
-    imagePath: "assets/images/categories_images/oil.png",
-  ),
-  CategoryItem(
-    name: "Meat & Fish",
+    name: "Thịt cá trứng đậu",
     imagePath: "assets/images/categories_images/meat.png",
   ),
   CategoryItem(
-    name: "Bakery & Snacks",
+    name: "Các loại bánh",
     imagePath: "assets/images/categories_images/bakery.png",
   ),
   CategoryItem(
-    name: "Dairy & Eggs",
+    name: "Sữa & đồ uống",
     imagePath: "assets/images/categories_images/dairy.png",
-  ),
-  CategoryItem(
-    name: "Beverages",
-    imagePath: "assets/images/categories_images/beverages.png",
   ),
 ];
