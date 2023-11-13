@@ -72,6 +72,9 @@ dependencies:
   # X
   xxtea: ^2.1.0
 
+  # Y 
+  youtube_player_flutter: ^8.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

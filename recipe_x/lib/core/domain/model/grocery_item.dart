@@ -4,6 +4,7 @@ class GroceryItem {
   final String description;
   final double price;
   final String imagePath;
+  final String url;
 
   GroceryItem({
     this.id,
@@ -11,6 +12,7 @@ class GroceryItem {
     required this.description,
     required this.price,
     required this.imagePath,
+    required this.url,
   });
 }
 
@@ -20,37 +22,43 @@ var demoItems = [
       name: "Organic Bananas",
       description: "7pcs, Priceg",
       price: 4.99,
-      imagePath: "assets/images/grocery_images/banana.png"),
+      imagePath: "assets/images/grocery_images/banana.png",
+      url: "https://www.youtube.com/watch?v=FL-BNgf3ecM"),
   GroceryItem(
       id: 2,
       name: "Red Apple",
       description: "1kg, Priceg",
       price: 4.99,
-      imagePath: "assets/images/grocery_images/apple.png"),
+      imagePath: "assets/images/grocery_images/apple.png",
+      url: ""),
   GroceryItem(
       id: 3,
       name: "Bell Pepper Red",
       description: "1kg, Priceg",
       price: 4.99,
-      imagePath: "assets/images/grocery_images/pepper.png"),
+      imagePath: "assets/images/grocery_images/pepper.png",
+      url: ""),
   GroceryItem(
       id: 4,
       name: "Ginger",
       description: "250gm, Priceg",
       price: 4.99,
-      imagePath: "assets/images/grocery_images/ginger.png"),
+      imagePath: "assets/images/grocery_images/ginger.png",
+      url: ""),
   GroceryItem(
       id: 5,
       name: "Meat",
       description: "250gm, Priceg",
       price: 4.99,
-      imagePath: "assets/images/grocery_images/beef.png"),
+      imagePath: "assets/images/grocery_images/beef.png",
+      url: ""),
   GroceryItem(
       id: 6,
       name: "Chikken",
       description: "250gm, Priceg",
       price: 4.99,
-      imagePath: "assets/images/grocery_images/chicken.png"),
+      imagePath: "assets/images/grocery_images/chicken.png",
+      url: ""),
 ];
 
 var exclusiveOffers = [demoItems[0], demoItems[1]];
@@ -65,35 +73,41 @@ var beverages = [
       name: "Dite Coke",
       description: "355ml, Price",
       price: 1.99,
-      imagePath: "assets/images/beverages_images/diet_coke.png"),
+      imagePath: "assets/images/beverages_images/diet_coke.png",
+      url: ""),
   GroceryItem(
       id: 8,
       name: "Sprite Can",
       description: "325ml, Price",
       price: 1.50,
-      imagePath: "assets/images/beverages_images/sprite.png"),
+      imagePath: "assets/images/beverages_images/sprite.png",
+      url: ""),
   GroceryItem(
       id: 8,
       name: "Apple Juice",
       description: "2L, Price",
       price: 15.99,
-      imagePath: "assets/images/beverages_images/apple_and_grape_juice.png"),
+      imagePath: "assets/images/beverages_images/apple_and_grape_juice.png",
+      url: ""),
   GroceryItem(
       id: 9,
       name: "Orange Juice",
       description: "2L, Price",
       price: 1.50,
-      imagePath: "assets/images/beverages_images/orange_juice.png"),
+      imagePath: "assets/images/beverages_images/orange_juice.png",
+      url: ""),
   GroceryItem(
       id: 10,
       name: "Coca Cola Can",
       description: "325ml, Price",
       price: 4.99,
-      imagePath: "assets/images/beverages_images/coca_cola.png"),
+      imagePath: "assets/images/beverages_images/coca_cola.png",
+      url: ""),
   GroceryItem(
       id: 11,
       name: "Pepsi Can",
       description: "330ml, Price",
       price: 4.99,
-      imagePath: "assets/images/beverages_images/pepsi.png"),
+      imagePath: "assets/images/beverages_images/pepsi.png",
+      url: ""),
 ];
