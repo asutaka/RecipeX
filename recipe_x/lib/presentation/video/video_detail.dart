@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../../core/widgets/app_text.dart';
+
 class VideoDetail extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -24,6 +26,34 @@ class _HomePageState extends State<VideoDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            padding: EdgeInsets.only(left: 25),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        title: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 25,
+          ),
+          child: AppText(
+            text: "abc",
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+      ),
       body: Container(
         child: YoutubePlayerBuilder(
           player: YoutubePlayer(
