@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/domain/model/category_item.dart';
 import '../../core/domain/model/grocery_item.dart';
-import '../../core/widgets/app_button.dart';
-import '../../core/widgets/highLevel/chart_item_widget.dart';
 import '../../core/widgets/highLevel/column_with_seprator.dart';
-import '../cart/checkout_bottom_sheet.dart';
-import '../explore/category_items_screen.dart';
+import '../../core/widgets/highLevel/video_item_widget.dart';
 import 'video_detail.dart';
 
 class VideoScreen extends StatelessWidget {
@@ -40,7 +36,7 @@ class VideoScreen extends StatelessWidget {
                           horizontal: 25,
                         ),
                         width: double.maxFinite,
-                        child: ChartItemWidget(
+                        child: VideoItemWidget(
                           item: e,
                         ),
                       ),
