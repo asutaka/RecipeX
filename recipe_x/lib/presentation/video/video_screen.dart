@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_x/domain/entity/video_api_dto.dart';
+import '../../core/data/sharedpref/getItInstance.dart';
 import '../../core/domain/model/grocery_item.dart';
 import '../../core/widgets/highLevel/column_with_seprator.dart';
 import '../../core/widgets/highLevel/video_item_widget.dart';
+import '../post/store/post_store.dart';
 import 'video_detail.dart';
 
-class VideoScreen extends StatelessWidget {
+class VideoScreen extends StatefulWidget {
+  @override
+  _VideoScreen createState() => _VideoScreen();
+}
+
+class _VideoScreen extends State<VideoScreen> {
+  final PostStore _postStore = getIt<PostStore>();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // check to see if already called api
+    if (!_postStore.loading) {
+      _postStore.getVideo();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

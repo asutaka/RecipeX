@@ -2,6 +2,7 @@ import 'package:sembast/sembast.dart';
 
 import '../../../domain/entity/post/post.dart';
 import '../../../domain/entity/post/post_list.dart';
+import '../../../domain/entity/video_api_dto.dart';
 import '../../../domain/repository/post/post_repository.dart';
 import '../../local/constants/db_constants.dart';
 import '../../local/datasources/post/post_datasource.dart';
@@ -65,4 +66,12 @@ class PostRepositoryImpl extends PostRepository {
       .update(post)
       .then((id) => id)
       .catchError((error) => throw error);
+
+  // Post: ---------------------------------------------------------------------
+  @override
+  Future<VideoAPIDTO_List> getVideo() async {
+    return await _postApi.getVideo().then((videos) {
+      return videos;
+    }).catchError((error) => throw error);
+  }
 }

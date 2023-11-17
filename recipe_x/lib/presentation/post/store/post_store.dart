@@ -2,6 +2,8 @@ import 'package:mobx/mobx.dart';
 
 import '../../../core/stores/error/error_store.dart';
 import '../../../domain/entity/post/post_list.dart';
+import '../../../domain/entity/video_api_dto.dart';
+import '../../../domain/usecase/post/api_video_usecase.dart';
 import '../../../domain/usecase/post/get_post_usecase.dart';
 import '../../../utils/dio/dio_error_util.dart';
 part 'post_store.g.dart';
@@ -10,10 +12,11 @@ class PostStore = _PostStore with _$PostStore;
 
 abstract class _PostStore with Store {
   // constructor:---------------------------------------------------------------
-  _PostStore(this._getPostUseCase, this.errorStore);
+  _PostStore(this._getPostUseCase, this._getVideo, this.errorStore);
 
   // use cases:-----------------------------------------------------------------
   final GetPostUseCase _getPostUseCase;
+  final APIVideoUseCase _getVideo;
 
   // stores:--------------------------------------------------------------------
   // store for handling errors
@@ -31,6 +34,9 @@ abstract class _PostStore with Store {
   PostList? postList;
 
   @observable
+  VideoAPIDTO_List? apiVideo;
+
+  @observable
   bool success = false;
 
   @computed
@@ -44,6 +50,16 @@ abstract class _PostStore with Store {
 
     future.then((postList) {
       this.postList = postList;
+    }).catchError((error) {
+      errorStore.errorMessage = DioErrorUtil.handleError(error);
+    });
+  }
+
+  @action
+  Future getVideo() async {
+    final future = _getVideo.call(params: null);
+    future.then((videos) {
+      apiVideo = videos;
     }).catchError((error) {
       errorStore.errorMessage = DioErrorUtil.handleError(error);
     });

@@ -1,3 +1,5 @@
+import 'package:recipe_x/domain/entity/video_api_dto.dart';
+
 import '../../../core/data/network/dio/dio_client.dart';
 import '../../../domain/entity/post/post_list.dart';
 import '../constants/endpoints.dart';
@@ -14,6 +16,16 @@ class PostApi {
     try {
       final res = await _dioClient.dio.get(Endpoints.getPosts);
       return PostList.fromJson(res.data);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<VideoAPIDTO_List> getVideo() async {
+    try {
+      final res = await _dioClient.dio.get(Endpoints.api_video);
+      return VideoAPIDTO_List.fromJson(res.data);
     } catch (e) {
       print(e.toString());
       throw e;

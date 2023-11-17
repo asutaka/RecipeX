@@ -1,3 +1,5 @@
+import 'package:recipe_x/domain/usecase/post/api_video_usecase.dart';
+
 import '../../../core/data/sharedpref/getItInstance.dart';
 import '../../../core/stores/error/error_store.dart';
 import '../../../core/stores/form/form_store.dart';
@@ -31,6 +33,7 @@ mixin StoreModule {
     getIt.registerSingleton<PostStore>(
       PostStore(
         getIt<GetPostUseCase>(),
+        getIt<APIVideoUseCase>(),
         getIt<ErrorStore>(),
       ),
     );
