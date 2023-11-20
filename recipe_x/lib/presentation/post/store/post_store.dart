@@ -33,6 +33,13 @@ abstract class _PostStore with Store {
   @observable
   PostList? postList;
 
+  static ObservableFuture<VideoAPIDTO_List?> emptyVideoResponse =
+      ObservableFuture.value(null);
+
+  @observable
+  ObservableFuture<VideoAPIDTO_List?> fetchVideosFuture =
+      ObservableFuture<VideoAPIDTO_List?>(emptyVideoResponse);
+
   @observable
   VideoAPIDTO_List? apiVideo;
 

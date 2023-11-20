@@ -1,9 +1,10 @@
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:recipe_x/domain/entity/video_api_dto.dart';
 import '../../core/data/sharedpref/getItInstance.dart';
-import '../../core/domain/model/grocery_item.dart';
-import '../../core/widgets/highLevel/column_with_seprator.dart';
 import '../../core/widgets/highLevel/video_item_widget.dart';
+import '../../core/widgets/progress_indicator_widget.dart';
 import '../post/store/post_store.dart';
 import 'video_detail.dart';
 
@@ -27,66 +28,101 @@ class _VideoScreen extends State<VideoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 25,
-              ),
-              Text(
-                "My Cart",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Column(
-                children: getChildrenWithSeperator(
-                  addToLastChild: false,
-                  widgets: demoItems.map((e) {
-                    return InkWell(
-                      onTap: () {
-                        print("Container was tapped");
-                        onCategoryItemClicked(context);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 25,
-                        ),
-                        width: double.maxFinite,
-                        child: VideoItemWidget(
-                          item: e,
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                  seperator: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 25,
-                    ),
-                    child: Divider(
-                      thickness: 1,
-                    ),
-                  ),
-                ),
-              ),
-              Divider(
-                thickness: 1,
-              ),
-            ],
-          ),
+    return _buildBody();
+  }
+
+  // body methods:--------------------------------------------------------------
+  Widget _buildBody() {
+    return Stack(
+      children: <Widget>[
+        _handleErrorMessage(),
+        _buildMainContent(),
+      ],
+    );
+  }
+
+  Widget _buildMainContent() {
+    return Observer(
+      builder: (context) {
+        return _postStore.loading
+            ? CustomProgressIndicatorWidget()
+            : Material(child: _buildListView());
+      },
+    );
+  }
+
+  Widget _buildListView() {
+    return _postStore.apiVideo != null
+        ? ListView.separated(
+            itemCount: _postStore.apiVideo!.video_apis!.length,
+            separatorBuilder: (context, position) {
+              return Divider();
+            },
+            itemBuilder: (context, position) {
+              return _buildListItem(position);
+            },
+          )
+        : Center(
+            child: Text(
+              'home_tv_no_post_found',
+            ),
+          );
+  }
+
+  Widget _buildListItem(int position) {
+    final VideoAPIDTO item =
+        _postStore.apiVideo?.video_apis?[position] ?? new VideoAPIDTO();
+    return InkWell(
+      onTap: () {
+        onCategoryItemClicked(context, item.video_id ?? "", item.title ?? "");
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 25,
+        ),
+        width: double.maxFinite,
+        child: VideoItemWidget(
+          item: item,
         ),
       ),
     );
   }
+
+  Widget _handleErrorMessage() {
+    return Observer(
+      builder: (context) {
+        if (_postStore.errorStore.errorMessage.isNotEmpty) {
+          return _showErrorMessage(_postStore.errorStore.errorMessage);
+        }
+
+        return SizedBox.shrink();
+      },
+    );
+  }
+
+  // General Methods:-----------------------------------------------------------
+  _showErrorMessage(String message) {
+    Future.delayed(Duration(milliseconds: 0), () {
+      if (message.isNotEmpty) {
+        FlushbarHelper.createError(
+          message: message,
+          title: 'home_tv_error',
+          duration: Duration(seconds: 3),
+        )..show(context);
+      }
+    });
+
+    return SizedBox.shrink();
+  }
 }
 
-void onCategoryItemClicked(BuildContext context) {
+void onCategoryItemClicked(BuildContext context, String videoId, String title) {
   Navigator.of(context).push(new MaterialPageRoute(
     builder: (BuildContext context) {
-      return VideoDetail();
+      return VideoDetail(
+        videoId: videoId,
+        title: title,
+      );
     },
   ));
 }

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/colors.dart';
-import '../../domain/model/grocery_item.dart';
+import '../../../domain/entity/video_api_dto.dart';
 import '../app_text.dart';
-import 'item_counter_widget.dart';
 
 class VideoItemWidget extends StatefulWidget {
   VideoItemWidget({Key? key, required this.item}) : super(key: key);
-  final GroceryItem item;
+  final VideoAPIDTO item;
 
   @override
   _ChartItemWidgetState createState() => _ChartItemWidgetState();
@@ -38,7 +36,7 @@ class _ChartItemWidgetState extends State<VideoItemWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.network(
-                  'https://img.youtube.com/vi/6cwnBBAVIwE/0.jpg',
+                  'https://img.youtube.com/vi/${widget.item.video_id ?? ""}/0.jpg',
                   width: 200,
                   height: 80,
                   fit: BoxFit.fitWidth,
@@ -47,7 +45,7 @@ class _ChartItemWidgetState extends State<VideoItemWidget> {
                   height: 5,
                 ),
                 AppText(
-                    text: widget.item.description,
+                    text: widget.item.title ?? "",
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ],

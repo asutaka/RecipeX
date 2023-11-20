@@ -4,6 +4,10 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../core/widgets/app_text.dart';
 
 class VideoDetail extends StatefulWidget {
+  VideoDetail({Key? key, required this.videoId, required this.title})
+      : super(key: key);
+  final String videoId;
+  final String title;
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -15,7 +19,7 @@ class _HomePageState extends State<VideoDetail> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: 'mnQMvKnvEKs',
+      initialVideoId: widget.videoId,
       flags: YoutubePlayerFlags(
         autoPlay: true,
         mute: true,
@@ -48,7 +52,7 @@ class _HomePageState extends State<VideoDetail> {
             horizontal: 25,
           ),
           child: AppText(
-            text: "abc",
+            text: widget.title,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),

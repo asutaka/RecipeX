@@ -33,10 +33,26 @@ mixin _$PostStore on _PostStore, Store {
     return super.postList;
   }
 
+  late final _$apiVideoAtom =
+      Atom(name: '_PostStore.apiVideo', context: context);
+
+  @override
+  VideoAPIDTO_List? get apiVideo {
+    _$apiVideoAtom.reportRead();
+    return super.apiVideo;
+  }
+
   @override
   set postList(PostList? value) {
     _$postListAtom.reportWrite(value, super.postList, () {
       super.postList = value;
+    });
+  }
+
+  @override
+  set apiVideo(VideoAPIDTO_List? value) {
+    _$apiVideoAtom.reportWrite(value, super.apiVideo, () {
+      super.apiVideo = value;
     });
   }
 
@@ -58,9 +74,17 @@ mixin _$PostStore on _PostStore, Store {
   late final _$getPostsAsyncAction =
       AsyncAction('_PostStore.getPosts', context: context);
 
+  late final _$getVideoAsyncAction =
+      AsyncAction('_PostStore.getVideo', context: context);
+
   @override
   Future<dynamic> getPosts() {
     return _$getPostsAsyncAction.run(() => super.getPosts());
+  }
+
+  @override
+  Future<dynamic> getVideo() {
+    return _$getVideoAsyncAction.run(() => super.getVideo());
   }
 
   @override
