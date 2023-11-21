@@ -34,7 +34,7 @@ class HomeBanner extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               AppText(
-                text: "Get Up To 40%  OFF",
+                text: "công thức mới",
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primaryColor,

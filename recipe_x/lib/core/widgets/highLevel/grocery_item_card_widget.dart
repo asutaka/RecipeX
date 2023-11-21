@@ -58,20 +58,6 @@ class GroceryItemCardWidget extends StatelessWidget {
               fontWeight: FontWeight.w600,
               color: Color(0xFF7C7C7C),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                AppText(
-                  text: "\$${item.price.toStringAsFixed(2)}",
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                Spacer(),
-                addWidget()
-              ],
-            )
           ],
         ),
       ),
