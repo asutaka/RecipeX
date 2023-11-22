@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entity/video_api_dto.dart';
+import '../../../domain/entity/videoDTO.dart';
 import '../app_text.dart';
 
 class VideoItemWidget extends StatefulWidget {

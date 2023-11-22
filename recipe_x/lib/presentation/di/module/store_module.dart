@@ -1,9 +1,10 @@
-import 'package:recipe_x/domain/usecase/post/api_video_usecase.dart';
+import 'package:recipe_x/domain/usecase/post/get_video_usecase.dart';
 
 import '../../../core/data/sharedpref/getItInstance.dart';
 import '../../../core/stores/error/error_store.dart';
 import '../../../core/stores/form/form_store.dart';
 import '../../../domain/usecase/post/get_post_usecase.dart';
+import '../../../domain/usecase/post/get_resource_usecase.dart';
 import '../../../domain/usecase/user/is_logged_in_usecase.dart';
 import '../../../domain/usecase/user/login_usecase.dart';
 import '../../../domain/usecase/user/save_login_in_status_usecase.dart';
@@ -33,7 +34,8 @@ mixin StoreModule {
     getIt.registerSingleton<PostStore>(
       PostStore(
         getIt<GetPostUseCase>(),
-        getIt<APIVideoUseCase>(),
+        getIt<GetVideoUseCase>(),
+        getIt<GetResourceUseCase>(),
         getIt<ErrorStore>(),
       ),
     );

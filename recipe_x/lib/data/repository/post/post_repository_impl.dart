@@ -1,8 +1,9 @@
+import 'package:recipe_x/domain/entity/resourceDTO.dart';
 import 'package:sembast/sembast.dart';
 
 import '../../../domain/entity/post/post.dart';
 import '../../../domain/entity/post/post_list.dart';
-import '../../../domain/entity/video_api_dto.dart';
+import '../../../domain/entity/videoDTO.dart';
 import '../../../domain/repository/post/post_repository.dart';
 import '../../local/constants/db_constants.dart';
 import '../../local/datasources/post/post_datasource.dart';
@@ -70,8 +71,15 @@ class PostRepositoryImpl extends PostRepository {
   // Post: ---------------------------------------------------------------------
   @override
   Future<ListVideoAPIDTO> getVideo() async {
-    return await _postApi.getVideo().then((videos) {
-      return videos;
+    return await _postApi.getVideo().then((data) {
+      return data;
+    }).catchError((error) => throw error);
+  }
+
+  @override
+  Future<ListResourceDTO> getResource() async {
+    return await _postApi.getResource().then((data) {
+      return data;
     }).catchError((error) => throw error);
   }
 }

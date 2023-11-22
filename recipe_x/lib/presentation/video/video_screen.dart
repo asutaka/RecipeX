@@ -1,7 +1,7 @@
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:recipe_x/domain/entity/video_api_dto.dart';
+import 'package:recipe_x/domain/entity/videoDTO.dart';
 import '../../core/data/sharedpref/getItInstance.dart';
 import '../../core/widgets/highLevel/video_item_widget.dart';
 import '../../core/widgets/progress_indicator_widget.dart';
@@ -52,9 +52,9 @@ class _VideoScreen extends State<VideoScreen> {
   }
 
   Widget _buildListView() {
-    return _postStore.apiVideo != null
+    return _postStore.lVideo != null
         ? ListView.separated(
-            itemCount: _postStore.apiVideo!.lData!.length,
+            itemCount: _postStore.lVideo!.lData!.length,
             separatorBuilder: (context, position) {
               return Divider();
             },
@@ -71,7 +71,7 @@ class _VideoScreen extends State<VideoScreen> {
 
   Widget _buildListItem(int position) {
     final VideoAPIDTO item =
-        _postStore.apiVideo?.lData?[position] ?? new VideoAPIDTO();
+        _postStore.lVideo?.lData?[position] ?? new VideoAPIDTO();
     return InkWell(
       onTap: () {
         onCategoryItemClicked(context, item.videoId ?? "", item.title ?? "");

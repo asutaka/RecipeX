@@ -33,13 +33,14 @@ mixin _$PostStore on _PostStore, Store {
     return super.postList;
   }
 
-  late final _$apiVideoAtom =
-      Atom(name: '_PostStore.apiVideo', context: context);
+  late final _$lVideoAtom = Atom(name: '_PostStore.lVideo', context: context);
+  late final _$lResourceAtom =
+      Atom(name: '_PostStore.lResource', context: context);
 
   @override
-  ListVideoAPIDTO? get apiVideo {
-    _$apiVideoAtom.reportRead();
-    return super.apiVideo;
+  ListResourceDTO? get lResource {
+    _$lResourceAtom.reportRead();
+    return super.lResource;
   }
 
   @override
@@ -50,9 +51,16 @@ mixin _$PostStore on _PostStore, Store {
   }
 
   @override
-  set apiVideo(ListVideoAPIDTO? value) {
-    _$apiVideoAtom.reportWrite(value, super.apiVideo, () {
-      super.apiVideo = value;
+  set lVideo(ListVideoAPIDTO? value) {
+    _$lVideoAtom.reportWrite(value, super.lVideo, () {
+      super.lVideo = value;
+    });
+  }
+
+  @override
+  set lResource(ListResourceDTO? value) {
+    _$lResourceAtom.reportWrite(value, super.lResource, () {
+      super.lResource = value;
     });
   }
 
@@ -77,6 +85,9 @@ mixin _$PostStore on _PostStore, Store {
   late final _$getVideoAsyncAction =
       AsyncAction('_PostStore.getVideo', context: context);
 
+  late final _$getResourceAsyncAction =
+      AsyncAction('_PostStore.getResource', context: context);
+
   @override
   Future<dynamic> getPosts() {
     return _$getPostsAsyncAction.run(() => super.getPosts());
@@ -85,6 +96,11 @@ mixin _$PostStore on _PostStore, Store {
   @override
   Future<dynamic> getVideo() {
     return _$getVideoAsyncAction.run(() => super.getVideo());
+  }
+
+  @override
+  Future<dynamic> getResource() {
+    return _$getResourceAsyncAction.run(() => super.getResource());
   }
 
   @override

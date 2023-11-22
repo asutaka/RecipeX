@@ -1,4 +1,5 @@
-import 'package:recipe_x/domain/entity/video_api_dto.dart';
+import 'package:recipe_x/domain/entity/resourceDTO.dart';
+import 'package:recipe_x/domain/entity/videoDTO.dart';
 
 import '../../entity/post/post.dart';
 import '../../entity/post/post_list.dart';
@@ -15,4 +16,5 @@ abstract class PostRepository {
   Future<int> delete(Post post);
 
   Future<ListVideoAPIDTO> getVideo();
+  Future<ListResourceDTO> getResource();
 }

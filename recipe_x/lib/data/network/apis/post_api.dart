@@ -1,4 +1,5 @@
-import 'package:recipe_x/domain/entity/video_api_dto.dart';
+import 'package:recipe_x/domain/entity/resourceDTO.dart';
+import 'package:recipe_x/domain/entity/videoDTO.dart';
 
 import '../../../core/data/network/dio/dio_client.dart';
 import '../../../domain/entity/post/post_list.dart';
@@ -26,6 +27,16 @@ class PostApi {
     try {
       final res = await _dioClient.dio.get(Endpoints.api_video);
       return ListVideoAPIDTO.fromJson(res.data);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<ListResourceDTO> getResource() async {
+    try {
+      final res = await _dioClient.dio.get(Endpoints.api_resource);
+      return ListResourceDTO.fromJson(res.data);
     } catch (e) {
       print(e.toString());
       throw e;

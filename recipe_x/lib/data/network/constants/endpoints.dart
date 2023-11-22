@@ -17,4 +17,6 @@ class Endpoints {
 
   //video
   static const String api_video = "$baseAddress/api_video";
+  //resource
+  static const String api_resource = "$baseAddress/api_resource";
 }

@@ -1,11 +1,11 @@
 import '../../../core/domain/usecase/use_case.dart';
-import '../../entity/video_api_dto.dart';
+import '../../entity/videoDTO.dart';
 import '../../repository/post/post_repository.dart';
 
-class APIVideoUseCase extends UseCase<ListVideoAPIDTO, void> {
+class GetVideoUseCase extends UseCase<ListVideoAPIDTO, void> {
   final PostRepository _postRepository;
 
-  APIVideoUseCase(this._postRepository);
+  GetVideoUseCase(this._postRepository);
 
   @override
   Future<ListVideoAPIDTO> call({required params}) {
