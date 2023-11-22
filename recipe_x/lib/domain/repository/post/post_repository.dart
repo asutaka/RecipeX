@@ -14,5 +14,5 @@ abstract class PostRepository {
 
   Future<int> delete(Post post);
 
-  Future<VideoAPIDTO_List> getVideo();
+  Future<ListVideoAPIDTO> getVideo();
 }

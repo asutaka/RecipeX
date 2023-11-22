@@ -33,15 +33,15 @@ abstract class _PostStore with Store {
   @observable
   PostList? postList;
 
-  static ObservableFuture<VideoAPIDTO_List?> emptyVideoResponse =
+  static ObservableFuture<ListVideoAPIDTO?> emptyVideoResponse =
       ObservableFuture.value(null);
 
   @observable
-  ObservableFuture<VideoAPIDTO_List?> fetchVideosFuture =
-      ObservableFuture<VideoAPIDTO_List?>(emptyVideoResponse);
+  ObservableFuture<ListVideoAPIDTO?> fetchVideosFuture =
+      ObservableFuture<ListVideoAPIDTO?>(emptyVideoResponse);
 
   @observable
-  VideoAPIDTO_List? apiVideo;
+  ListVideoAPIDTO? apiVideo;
 
   @observable
   bool success = false;

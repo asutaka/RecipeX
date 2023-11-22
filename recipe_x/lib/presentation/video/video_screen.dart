@@ -54,7 +54,7 @@ class _VideoScreen extends State<VideoScreen> {
   Widget _buildListView() {
     return _postStore.apiVideo != null
         ? ListView.separated(
-            itemCount: _postStore.apiVideo!.video_apis!.length,
+            itemCount: _postStore.apiVideo!.lData!.length,
             separatorBuilder: (context, position) {
               return Divider();
             },
@@ -71,10 +71,10 @@ class _VideoScreen extends State<VideoScreen> {
 
   Widget _buildListItem(int position) {
     final VideoAPIDTO item =
-        _postStore.apiVideo?.video_apis?[position] ?? new VideoAPIDTO();
+        _postStore.apiVideo?.lData?[position] ?? new VideoAPIDTO();
     return InkWell(
       onTap: () {
-        onCategoryItemClicked(context, item.video_id ?? "", item.title ?? "");
+        onCategoryItemClicked(context, item.videoId ?? "", item.title ?? "");
       },
       child: Container(
         padding: EdgeInsets.symmetric(

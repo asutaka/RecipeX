@@ -69,7 +69,7 @@ class PostRepositoryImpl extends PostRepository {
 
   // Post: ---------------------------------------------------------------------
   @override
-  Future<VideoAPIDTO_List> getVideo() async {
+  Future<ListVideoAPIDTO> getVideo() async {
     return await _postApi.getVideo().then((videos) {
       return videos;
     }).catchError((error) => throw error);

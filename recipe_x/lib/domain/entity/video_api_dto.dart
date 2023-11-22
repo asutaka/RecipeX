@@ -1,33 +1,33 @@
 class VideoAPIDTO {
   int? id;
   String? title;
-  String? video_id;
+  String? videoId;
 
-  VideoAPIDTO({this.id, this.title, this.video_id});
+  VideoAPIDTO({this.id, this.title, this.videoId});
 
   factory VideoAPIDTO.fromMap(Map<String, dynamic> json) => VideoAPIDTO(
         id: json["id"],
         title: json["title"],
-        video_id: json["video_id"],
+        videoId: json["videoId"],
       );
 
   Map<String, dynamic> toMap() =>
-      {"id": id, "title": title, "video_id": video_id};
+      {"id": id, "title": title, "videoId": videoId};
 }
 
-class VideoAPIDTO_List {
-  final List<VideoAPIDTO>? video_apis;
+class ListVideoAPIDTO {
+  final List<VideoAPIDTO>? lData;
 
-  VideoAPIDTO_List({
-    this.video_apis,
+  ListVideoAPIDTO({
+    this.lData,
   });
 
-  factory VideoAPIDTO_List.fromJson(List<dynamic> json) {
-    List<VideoAPIDTO> video_apis = <VideoAPIDTO>[];
-    video_apis = json.map((post) => VideoAPIDTO.fromMap(post)).toList();
+  factory ListVideoAPIDTO.fromJson(List<dynamic> json) {
+    List<VideoAPIDTO> data = <VideoAPIDTO>[];
+    data = json.map((post) => VideoAPIDTO.fromMap(post)).toList();
 
-    return VideoAPIDTO_List(
-      video_apis: video_apis,
+    return ListVideoAPIDTO(
+      lData: data,
     );
   }
 }

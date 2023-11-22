@@ -22,10 +22,10 @@ class PostApi {
     }
   }
 
-  Future<VideoAPIDTO_List> getVideo() async {
+  Future<ListVideoAPIDTO> getVideo() async {
     try {
       final res = await _dioClient.dio.get(Endpoints.api_video);
-      return VideoAPIDTO_List.fromJson(res.data);
+      return ListVideoAPIDTO.fromJson(res.data);
     } catch (e) {
       print(e.toString());
       throw e;

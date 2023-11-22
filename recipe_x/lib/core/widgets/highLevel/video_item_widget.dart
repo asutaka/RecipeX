@@ -36,7 +36,7 @@ class _ChartItemWidgetState extends State<VideoItemWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.network(
-                  'https://img.youtube.com/vi/${widget.item.video_id ?? ""}/0.jpg',
+                  'https://img.youtube.com/vi/${widget.item.videoId ?? ""}/0.jpg',
                   width: 200,
                   height: 80,
                   fit: BoxFit.fitWidth,

@@ -27,17 +27,17 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: 25,
                   ),
-                  padded(subTitle("Exclusive Order")),
+                  padded(subTitle("Các món ăn")),
                   getHorizontalItemSlider(exclusiveOffers),
                   SizedBox(
                     height: 15,
                   ),
-                  padded(subTitle("Best Selling")),
+                  padded(subTitle("Các loại bánh")),
                   getHorizontalItemSlider(bestSelling),
                   SizedBox(
                     height: 15,
                   ),
-                  padded(subTitle("Groceries")),
+                  padded(subTitle("Chủ đề")),
                   SizedBox(
                     height: 15,
                   ),
@@ -66,14 +66,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  getHorizontalItemSlider(groceries),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  )
                 ],
               ),
             ),
@@ -144,25 +137,6 @@ class HomeScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppColors.primaryColor),
         ),
-      ],
-    );
-  }
-
-  Widget locationWidget() {
-    String locationIconPath = "assets/icons/location_icon.svg";
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SvgPicture.asset(
-          locationIconPath,
-        ),
-        SizedBox(
-          width: 8,
-        ),
-        Text(
-          "Khartoum,Sudan",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        )
       ],
     );
   }

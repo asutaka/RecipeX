@@ -51,13 +51,7 @@ class GroceryItemCardWidget extends StatelessWidget {
               text: item.name,
               fontSize: 16,
               fontWeight: FontWeight.bold,
-            ),
-            AppText(
-              text: item.description,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF7C7C7C),
-            ),
+            )
           ],
         ),
       ),

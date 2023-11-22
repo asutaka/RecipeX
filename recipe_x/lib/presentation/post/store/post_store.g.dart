@@ -37,7 +37,7 @@ mixin _$PostStore on _PostStore, Store {
       Atom(name: '_PostStore.apiVideo', context: context);
 
   @override
-  VideoAPIDTO_List? get apiVideo {
+  ListVideoAPIDTO? get apiVideo {
     _$apiVideoAtom.reportRead();
     return super.apiVideo;
   }
@@ -50,7 +50,7 @@ mixin _$PostStore on _PostStore, Store {
   }
 
   @override
-  set apiVideo(VideoAPIDTO_List? value) {
+  set apiVideo(ListVideoAPIDTO? value) {
     _$apiVideoAtom.reportWrite(value, super.apiVideo, () {
       super.apiVideo = value;
     });
