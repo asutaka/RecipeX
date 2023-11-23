@@ -1,26 +1,26 @@
 class CategoryItem {
   final int? id;
-  final String name;
-  final String imagePath;
+  final String title;
+  final String image;
 
-  CategoryItem({this.id, required this.name, required this.imagePath});
+  CategoryItem({this.id, required this.title, required this.image});
 }
 
 var categoryItemsDemo = [
   CategoryItem(
-    name: "Rau quả",
-    imagePath: "assets/images/categories_images/fruit.png",
+    title: "Rau quả",
+    image: "assets/images/categories_images/fruit.png",
   ),
   CategoryItem(
-    name: "Thịt cá trứng đậu",
-    imagePath: "assets/images/categories_images/meat.png",
+    title: "Thịt cá trứng đậu",
+    image: "assets/images/categories_images/meat.png",
   ),
   CategoryItem(
-    name: "Các loại bánh",
-    imagePath: "assets/images/categories_images/bakery.png",
+    title: "Các loại bánh",
+    image: "assets/images/categories_images/bakery.png",
   ),
   CategoryItem(
-    name: "Sữa & đồ uống",
-    imagePath: "assets/images/categories_images/dairy.png",
+    title: "Sữa & đồ uống",
+    image: "assets/images/categories_images/dairy.png",
   ),
 ];

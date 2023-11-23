@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_x/domain/entity/resourceDTO.dart';
 
-import '../../domain/model/category_item.dart';
 import '../app_text.dart';
 
-class CategoryItemCardWidget extends StatelessWidget {
-  CategoryItemCardWidget(
-      {Key? key, required this.item, this.color = Colors.blue})
+class ResourceItemWidget extends StatelessWidget {
+  ResourceItemWidget({Key? key, required this.item, this.color = Colors.blue})
       : super(key: key);
-  final CategoryItem item;
+  final ResourceDTO item;
 
   final height = 200.0;
 
@@ -41,7 +40,7 @@ class CategoryItemCardWidget extends StatelessWidget {
             height: 60,
             child: Center(
               child: AppText(
-                text: item.title,
+                text: item.title ?? "",
                 textAlign: TextAlign.center,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -56,7 +55,7 @@ class CategoryItemCardWidget extends StatelessWidget {
   Widget imageWidget() {
     return Container(
       child: Image.asset(
-        item.image,
+        item.image ?? "",
         fit: BoxFit.contain,
       ),
     );

@@ -1,11 +1,14 @@
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:recipe_x/domain/entity/resourceDTO.dart';
 
 import '../../core/data/sharedpref/getItInstance.dart';
 import '../../core/domain/model/category_item.dart';
 import '../../core/widgets/app_text.dart';
-import '../../core/widgets/highLevel/category_item_card_widget.dart';
-import '../../core/widgets/highLevel/search_bar_widget.dart';
+import '../../core/widgets/highLevel/resource_item_widget.dart';
+import '../../core/widgets/progress_indicator_widget.dart';
 import '../explore/category_items_screen.dart';
 import '../post/store/post_store.dart';
 
@@ -20,7 +23,7 @@ List<Color> gridColors = [
   Color(0xffD73B77),
 ];
 
-class ResourceScreen extends StatelessWidget {
+class ResourceScreen extends StatefulWidget {
   @override
   _ResourceScreen createState() => _ResourceScreen();
 }
@@ -33,23 +36,41 @@ class _ResourceScreen extends State<ResourceScreen> {
 
     // check to see if already called api
     if (!_postStore.loading) {
-      _postStore.getVideo();
+      _postStore.getResource();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Column(
-        children: [
-          getHeader(),
-          Expanded(
-            child: getStaggeredGridView(context),
-          ),
-        ],
-      ),
-    ));
+    return _buildBody();
+  }
+
+  // body methods:--------------------------------------------------------------
+  Widget _buildBody() {
+    return Stack(
+      children: <Widget>[
+        _handleErrorMessage(),
+        _buildMainContent(),
+      ],
+    );
+  }
+
+  Widget _buildMainContent() {
+    return Observer(
+      builder: (context) {
+        return _postStore.loading
+            ? CustomProgressIndicatorWidget()
+            : Scaffold(
+                body: SafeArea(
+                child: Column(children: [
+                  getHeader(),
+                  Expanded(
+                    child: getStaggeredGridView(context),
+                  ),
+                ]),
+              ));
+      },
+    );
   }
 
   Widget getHeader() {
@@ -60,40 +81,34 @@ class _ResourceScreen extends State<ResourceScreen> {
         ),
         Center(
           child: AppText(
-            text: "Find Products",
+            text: "Tìm theo nguyên liệu",
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: SearchBarWidget(),
-        ),
+        )
       ],
     );
   }
 
   Widget getStaggeredGridView(BuildContext context) {
+    var lData = _postStore.lResource!.lData;
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(
         vertical: 10,
       ),
       child: StaggeredGrid.count(
         crossAxisCount: 2,
-        children: categoryItemsDemo.asMap().entries.map<Widget>((e) {
+        children: lData!.asMap().entries.map<Widget>((e) {
           int index = e.key;
-          CategoryItem categoryItem = e.value;
+          ResourceDTO item = e.value;
           return GestureDetector(
             onTap: () {
-              onCategoryItemClicked(context, categoryItem);
+              // onCategoryItemClicked(context, categoryItem);
             },
             child: Container(
               padding: EdgeInsets.all(10),
-              child: CategoryItemCardWidget(
-                item: categoryItem,
+              child: ResourceItemWidget(
+                item: item,
                 color: gridColors[index % gridColors.length],
               ),
             ),
@@ -103,6 +118,33 @@ class _ResourceScreen extends State<ResourceScreen> {
         crossAxisSpacing: 4.0, // add some space
       ),
     );
+  }
+
+  Widget _handleErrorMessage() {
+    return Observer(
+      builder: (context) {
+        if (_postStore.errorStore.errorMessage.isNotEmpty) {
+          return _showErrorMessage(_postStore.errorStore.errorMessage);
+        }
+
+        return SizedBox.shrink();
+      },
+    );
+  }
+
+  // General Methods:-----------------------------------------------------------
+  _showErrorMessage(String message) {
+    Future.delayed(Duration(milliseconds: 0), () {
+      if (message.isNotEmpty) {
+        FlushbarHelper.createError(
+          message: message,
+          title: 'home_tv_error',
+          duration: Duration(seconds: 3),
+        )..show(context);
+      }
+    });
+
+    return SizedBox.shrink();
   }
 }
 
