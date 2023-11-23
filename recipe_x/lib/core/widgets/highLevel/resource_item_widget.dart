@@ -54,9 +54,11 @@ class ResourceItemWidget extends StatelessWidget {
 
   Widget imageWidget() {
     return Container(
-      child: Image.asset(
+      child: Image.network(
         item.image ?? "",
-        fit: BoxFit.contain,
+        width: 200,
+        height: 80,
+        fit: BoxFit.fitWidth,
       ),
     );
   }
